@@ -90,7 +90,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_A) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             if (x == 0) {
                 x =0;
             } else {
@@ -99,7 +99,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
 
 
         }
-        if (e.getKeyCode() == KeyEvent.VK_D) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if (x == 600) {
                 x = 600;
             }else {
