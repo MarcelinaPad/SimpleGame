@@ -19,12 +19,16 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
     private int WrogX1 = liczba.nextInt(6)*100;
     private int WrogX2 = liczba.nextInt(6)*100;
 
+    private Image graczImg;
+
+
 
 
     public Gra(){
         time = new Timer(10, this);
         time.start();
-        System.out.println(WrogX1);
+
+        graczImg = new ImageIcon("Gracz_new.png").getImage();
 
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -32,11 +36,13 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
 
     }
     public void paint(Graphics g) {
+
+        super.paint(g);
+
         g.setColor(Color.BLACK);
         g.fillRect(0,0, 700, 600);
         //gracz
-        g.setColor(Color.cyan);
-        g.fillRect(x,475, 75, 75);
+        g.drawImage(graczImg, x, 475,75,75,this);
         // wróg
         g.setColor(Color.RED);
         g.fillRect(WrogX1,ey,100,100);
