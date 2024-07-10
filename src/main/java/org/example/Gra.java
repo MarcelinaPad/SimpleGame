@@ -20,6 +20,8 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
     private int WrogX2 = liczba.nextInt(6)*100;
 
     private Image graczImg;
+    private Image wrog1Img;
+    private Image wrog2Img;
 
 
 
@@ -29,6 +31,8 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
         time.start();
 
         graczImg = new ImageIcon("Gracz_new.png").getImage();
+        wrog1Img = new ImageIcon("wrog1.png").getImage();
+        wrog2Img = new ImageIcon("wrog2.png").getImage();
 
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -44,9 +48,8 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
         //gracz
         g.drawImage(graczImg, x, 475,75,75,this);
         // wróg
-        g.setColor(Color.RED);
-        g.fillRect(WrogX1,ey,100,100);
-        g.fillRect(WrogX2,ey,100,100);
+        g.drawImage(wrog1Img,WrogX1, ey, 100, 100, this);
+        g.drawImage(wrog2Img,WrogX2, ey, 100, 100, this);
         //punkty
         g.setColor(Color.WHITE);
         g.setFont(new Font("serif", Font.BOLD, 10));
