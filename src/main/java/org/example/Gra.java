@@ -26,7 +26,8 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
 
     private boolean czyPokazacGraczaHappy = false;
     private boolean czyPokazaćTekst = false;
-    private Timer timerTekst;
+    private boolean czyPrzegrana = false;
+
 
 
 
@@ -63,22 +64,27 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
         g.setFont(new Font("serif", Font.BOLD, 25));
         g.drawString("Punkty: " + punkty, 570,20);
 
-        //gracz
-
-        if (czyPokazacGraczaHappy) {
-            g.setColor(Color.MAGENTA);
-            g.setFont(new Font("Rick and Morty Font", Font.BOLD, 32));
-            g.drawString("JE JE JE", 300, 300);
-        }
-        if(czyPokazacGraczaHappy) {
-            g.drawImage(graczHappyImage, 250, 320, 200, 200, this);
-
+        //napis pozmywaj
+        if (czyPrzegrana) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("Rick and Morty Font", Font.CENTER_BASELINE, 32));
+            g.drawString("POZMYWAJ", 250, 300);
         }else {
-            g.drawImage(graczImg, x, 475, 75, 75, this);
+
+            //gracz
+
+            if (czyPokazacGraczaHappy) {
+                g.setColor(Color.MAGENTA);
+                g.setFont(new Font("Rick and Morty Font", Font.BOLD, 32));
+                g.drawString("JE JE JE", 300, 300);
+                g.drawImage(graczHappyImage, 250, 320, 200, 200, this);
+
+            } else {
+                g.drawImage(graczImg, x, 475, 75, 75, this);
+            }
+
+
         }
-
-
-
 
 
     }
@@ -102,6 +108,18 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
             });
             timer.setRepeats(false);
             timer.start();
+
+//            czyPokazaćTekst = true;
+//            time.stop();
+//            Timer timerPozmywaj = new Timer(3000, new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    czyPokazaćTekst = false;
+//                    time.start();
+//                }
+//            });
+//            timerPozmywaj.setRepeats(false);
+//            timerPozmywaj.start();
 //
 //            czyPokazaćTekst = true;
 //            timerTekst= new Timer (1000, new ActionListener() {
@@ -123,6 +141,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
 
         if (gracz.intersects(wrog1) || gracz.intersects(wrog2)) {
             time.stop();
+            czyPrzegrana = true;
         }
 
 
@@ -167,6 +186,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
         WrogX2 = liczba.nextInt(6) * 100;
         x = 300;
         time.start();
+        czyPrzegrana = false;
     }
 
     @Override
