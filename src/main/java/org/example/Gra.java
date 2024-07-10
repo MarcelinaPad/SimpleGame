@@ -25,6 +25,8 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
     private Image wrog2Img;
 
     private boolean czyPokazacGraczaHappy = false;
+    private boolean czyPokazaćTekst = false;
+    private Timer timerTekst;
 
 
 
@@ -50,13 +52,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
         g.setColor(Color.BLACK);
         g.fillRect(0,0, 700, 600);
 
-        //gracz
 
-        if (czyPokazacGraczaHappy) {
-            g.drawImage(graczHappyImage, x, 440,150,150,this);
-        }else{
-            g.drawImage(graczImg, x, 475, 100,100,this);
-        }
 
 
         // wróg
@@ -64,10 +60,24 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
         g.drawImage(wrog2Img,WrogX2, ey, 100, 100, this);
         //punkty
         g.setColor(Color.WHITE);
-        g.setFont(new Font("serif", Font.BOLD, 10));
+        g.setFont(new Font("serif", Font.BOLD, 25));
         g.drawString("Punkty: " + punkty, 570,20);
 
-        
+        //gracz
+
+        if (czyPokazacGraczaHappy) {
+            g.setColor(Color.MAGENTA);
+            g.setFont(new Font("Rick and Morty Font", Font.BOLD, 32));
+            g.drawString("JE JE JE", 300, 300);
+        }
+        if(czyPokazacGraczaHappy) {
+            g.drawImage(graczHappyImage, 250, 320, 200, 200, this);
+
+        }else {
+            g.drawImage(graczImg, x, 475, 75, 75, this);
+        }
+
+
 
 
 
@@ -83,7 +93,7 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
             WrogX1 = liczba.nextInt(6) * 100;
             WrogX2 = liczba.nextInt(6) * 100;
             czyPokazacGraczaHappy = true;
-            Timer timer = new Timer(500, new ActionListener() {
+            Timer timer = new Timer(750, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     czyPokazacGraczaHappy = false;
@@ -92,6 +102,19 @@ public class Gra extends JPanel implements KeyListener, ActionListener {
             });
             timer.setRepeats(false);
             timer.start();
+//
+//            czyPokazaćTekst = true;
+//            timerTekst= new Timer (1000, new ActionListener() {
+//                        @Override
+//                        public void actionPerformed(ActionEvent e) {
+//
+//                            czyPokazaćTekst = false;
+//                            timerTekst.start();
+//
+//                        }
+//                    });
+//            timerTekst.setRepeats(false);
+//            timerTekst.start();
         }
 
         Rectangle gracz = new Rectangle(x,475, 75,75);
